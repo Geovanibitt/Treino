@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Full Body AllDay — Método Jorlan Vieira</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap');
+
+  :root {
+    --bg: #0A0A0F;
+    --bg2: #111118;
+    --bg3: #1A1A24;
+    --card: #16161F;
+    --border: #2A2A38;
+    --border2: #333344;
+    --text: #F0F0F5;
+    --text2: #9090A8;
+    --text3: #5A5A72;
+    --accent: #7C6FF7;
+    --accent2: #5B54CC;
+    --green: #3DBA8C;
+    --amber: #E8A840;
+    --red: #E05C5C;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    max-width: 420px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 2rem 1.25rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,111,247,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .header-title span { color: var(--accent); }
+  .header-sub {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* STATS GRID */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 1.25rem 1rem;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+  }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-val.accent { color: var(--accent); }
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* WEEK BAR */
+  .week-wrap {
+    padding: 0 1.25rem 1.25rem;
+  }
+  .week-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+  .week-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  .wday { text-align: center; }
+  .wday-lbl {
+    font-size: 10px;
+    color: var(--text3);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  .wday-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .dot-a { background: rgba(124,111,247,0.2); color: var(--accent); border: 1px solid rgba(124,111,247,0.3); }
+  .dot-b { background: rgba(61,186,140,0.15); color: var(--green); border: 1px solid rgba(61,186,140,0.25); }
+  .dot-c { background: rgba(232,168,64,0.15); color: var(--amber); border: 1px solid rgba(232,168,64,0.25); }
+  .dot-rest { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); font-size: 12px; }
+
+  /* SECTION */
+  .section { padding: 0 1.25rem; margin-bottom: 0.25rem; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    margin-bottom: 10px;
+    margin-top: 1.25rem;
+  }
+
+  /* TREINO BUTTONS */
+  .treino-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .treino-btn {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .treino-btn::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .treino-btn.active-a { border-color: rgba(124,111,247,0.4); background: rgba(124,111,247,0.06); }
+  .treino-btn.active-a::before { background: var(--accent); opacity: 1; }
+  .treino-btn.active-b { border-color: rgba(61,186,140,0.4); background: rgba(61,186,140,0.05); }
+  .treino-btn.active-b::before { background: var(--green); opacity: 1; }
+  .treino-btn.active-c { border-color: rgba(232,168,64,0.4); background: rgba(232,168,64,0.05); }
+  .treino-btn.active-c::before { background: var(--amber); opacity: 1; }
+
+  .tb-badge {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .badge-a { background: rgba(124,111,247,0.15); color: var(--accent); }
+  .badge-b { background: rgba(61,186,140,0.15); color: var(--green); }
+  .badge-c { background: rgba(232,168,64,0.15); color: var(--amber); }
+
+  .tb-info { flex: 1; min-width: 0; }
+  .tb-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .tb-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 2px;
+  }
+  .tb-arrow {
+    font-size: 18px;
+    color: var(--text3);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .treino-btn.active-a .tb-arrow,
+  .treino-btn.active-b .tb-arrow,
+  .treino-btn.active-c .tb-arrow { transform: rotate(90deg); }
+
+  /* DETAIL PANEL */
+  .detail {
+    display: none;
+    margin-top: 8px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .detail.open { display: block; }
+
+  .detail-head {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-head-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .detail-head-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 3px;
+  }
+  .detail-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .dtag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 99px;
+  }
+  .dtag-a { background: rgba(124,111,247,0.15); color: var(--accent); }
+  .dtag-b { background: rgba(61,186,140,0.12); color: var(--green); }
+  .dtag-c { background: rgba(232,168,64,0.12); color: var(--amber); }
+  .dtag-r { background: rgba(224,92,92,0.12); color: var(--red); }
+
+  /* EXERCISE ITEMS */
+  .ex-item { border-bottom: 1px solid var(--border); }
+  .ex-item:last-child { border-bottom: none; }
+
+  .ex-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .ex-row:hover, .ex-row:active { background: rgba(255,255,255,0.03); }
+
+  .ex-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .num-a { background: rgba(124,111,247,0.15); color: var(--accent); }
+  .num-b { background: rgba(61,186,140,0.15); color: var(--green); }
+  .num-c { background: rgba(232,168,64,0.15); color: var(--amber); }
+
+  .ex-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .ex-series {
+    font-size: 11px;
+    color: var(--text3);
+    white-space: nowrap;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+  .ex-chev {
+    font-size: 14px;
+    color: var(--text3);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .ex-row.open .ex-chev { transform: rotate(180deg); color: var(--accent); }
+
+  .ex-expand {
+    display: none;
+    padding: 12px 16px 14px 52px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .ex-expand.open { display: block; }
+  .ex-dica {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+  .ex-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .etag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 99px;
+  }
+  .etag-p { background: rgba(124,111,247,0.12); color: var(--accent); }
+  .etag-g { background: rgba(61,186,140,0.12); color: var(--green); }
+  .etag-a { background: rgba(232,168,64,0.12); color: var(--amber); }
+  .etag-r { background: rgba(224,92,92,0.12); color: var(--red); }
+
+  /* SEMANAS */
+  .sem-list { display: flex; flex-direction: column; gap: 8px; }
+  .sem-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .sem-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .sem-head:hover { background: rgba(255,255,255,0.03); }
+  .sem-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .sem-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+  .sem-body {
+    display: none;
+    padding: 12px 16px 14px 56px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .sem-body.open { display: block; }
+  .sem-body p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* TÉCNICAS */
+  .tec-list { display: flex; flex-direction: column; gap: 8px; }
+  .tec-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .tec-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .tec-head:hover { background: rgba(255,255,255,0.03); }
+  .tec-icon {
+    width: 34px; height: 34px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    background: rgba(124,111,247,0.12);
+  }
+  .tec-name { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+  .tec-body {
+    display: none;
+    padding: 12px 16px 14px 62px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .tec-body.open { display: block; }
+  .tec-body p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.25rem 1.25rem 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 2rem 1.25rem 0;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+  .footer span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Método AllDay · Jorlan Vieira</div>
+  <div class="header-title">FULL BODY<br><span>AVANÇADO</span></div>
+  <div class="header-sub">Hipertrofia + Força · 3× por semana · 30 dias</div>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-val accent">~20</div>
+    <div class="stat-lbl">Séries por treino</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">60–90s</div>
+    <div class="stat-lbl">Descanso entre séries</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val accent">3×</div>
+    <div class="stat-lbl">Treinos por semana</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">30d</div>
+    <div class="stat-lbl">Ciclo completo</div>
+  </div>
+</div>
+
+<div class="week-wrap">
+  <div class="week-label">Distribuição semanal</div>
+  <div class="week-row">
+    <div class="wday"><div class="wday-lbl">Seg</div><div class="wday-dot dot-a">A</div></div>
+    <div class="wday"><div class="wday-lbl">Ter</div><div class="wday-dot dot-rest">—</div></div>
+    <div class="wday"><div class="wday-lbl">Qua</div><div class="wday-dot dot-b">B</div></div>
+    <div class="wday"><div class="wday-lbl">Qui</div><div class="wday-dot dot-rest">—</div></div>
+    <div class="wday"><div class="wday-lbl">Sex</div><div class="wday-dot dot-c">C</div></div>
+    <div class="wday"><div class="wday-lbl">Sáb</div><div class="wday-dot dot-rest">—</div></div>
+    <div class="wday"><div class="wday-lbl">Dom</div><div class="wday-dot dot-rest">—</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-title">Selecione o treino</div>
+  <div class="treino-list">
+
+    <!-- TREINO A -->
+    <button class="treino-btn" onclick="toggleTreino('A',this)" aria-expanded="false" aria-controls="detail-A">
+      <div class="tb-badge badge-a">A</div>
+      <div class="tb-info">
+        <div class="tb-name">Treino A — Força base</div>
+        <div class="tb-sub">Segunda · Compostos pesados · Alta intensidade</div>
+      </div>
+      <span class="tb-arrow">›</span>
+    </button>
+    <div id="detail-A" class="detail" role="region">
+      <div class="detail-head">
+        <div class="detail-head-title">TREINO A</div>
+        <div class="detail-head-sub">Segunda-feira · Excêntrica + Conexão máxima</div>
+        <div class="detail-tags">
+          <span class="dtag dtag-r">Pesado</span>
+          <span class="dtag dtag-a">6 exercícios</span>
+          <span class="dtag dtag-b">Compostos</span>
+        </div>
+      </div>
+      <div id="exlist-A"></div>
+    </div>
+
+    <!-- TREINO B -->
+    <button class="treino-btn" onclick="toggleTreino('B',this)" aria-expanded="false" aria-controls="detail-B">
+      <div class="tb-badge badge-b">B</div>
+      <div class="tb-info">
+        <div class="tb-name">Treino B — Pump e densidade</div>
+        <div class="tb-sub">Quarta · Volume moderado · Máximo pump</div>
+      </div>
+      <span class="tb-arrow">›</span>
+    </button>
+    <div id="detail-B" class="detail" role="region">
+      <div class="detail-head">
+        <div class="detail-head-title">TREINO B</div>
+        <div class="detail-head-sub">Quarta-feira · Pirâmides, drop-sets e isometrias</div>
+        <div class="detail-tags">
+          <span class="dtag dtag-b">Moderado-Alto</span>
+          <span class="dtag dtag-a">7 exercícios</span>
+          <span class="dtag dtag-c">Pirâmide</span>
+        </div>
+      </div>
+      <div id="exlist-B"></div>
+    </div>
+
+    <!-- TREINO C -->
+    <button class="treino-btn" onclick="toggleTreino('C',this)" aria-expanded="false" aria-controls="detail-C">
+      <div class="tb-badge badge-c">C</div>
+      <div class="tb-info">
+        <div class="tb-name">Treino C — Volume e detalhe</div>
+        <div class="tb-sub">Sexta · Alto volume · Super-sets</div>
+      </div>
+      <span class="tb-arrow">›</span>
+    </button>
+    <div id="detail-C" class="detail" role="region">
+      <div class="detail-head">
+        <div class="detail-head-title">TREINO C</div>
+        <div class="detail-head-sub">Sexta-feira · Repetições altas + detalhe muscular</div>
+        <div class="detail-tags">
+          <span class="dtag dtag-c">Alto Volume</span>
+          <span class="dtag dtag-a">7 exercícios</span>
+          <span class="dtag dtag-b">Super-sets</span>
+        </div>
+      </div>
+      <div id="exlist-C"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-title">Progressão 30 dias</div>
+  <div class="sem-list" id="sem-list"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-title">Técnicas AllDay</div>
+  <div class="tec-list" id="tec-list"></div>
+</div>
+
+<div class="footer">ALL DAY · <span>TODO DIA</span></div>
+
+<script>
+const exA=[
+  {n:"Agachamento livre",s:"5 × 6–8",d:"Excêntrica 3–4s na descida. Pausa 1s no fundo. Subida explosiva. Você (1.82m): amplitude total é sua vantagem — desça até abaixo do paralelo. O treino começa na mente antes de chegar no músculo.",tags:[["Excêntrica 4s","r"],["Composto","p"],["Base do método","g"]]},
+  {n:"Supino inclinado c/ halteres",s:"3×6–8 + 2×10–12",d:"Pré-estiramento completo no peito. Última série: vai até a falha + 3 repetições parciais. Seu pai (1.76m): alavanca favorável, progride carga mais rápido aqui. Cotovelos levemente fechados na descida.",tags:[["Excêntrica 3s","r"],["Falha + parciais","g"]]},
+  {n:"Remada curvada c/ barra",s:"4 × 8",d:"Isometria de 3s no ponto de contração máxima. Retrair bem a escápula antes de puxar. Não puxe com os ombros — foco em retrair as escápulas e sentir o dorsal.",tags:[["Isometria 3s","p"],["Escápula","g"]]},
+  {n:"Desenvolvimento militar c/ barra",s:"3×6–8 + 2×10–12",d:"Isometria de 2s no topo. Coluna neutra, núcleo contraído durante toda a série. Jorlan usa o overhead press como base para criar densidade de ombro.",tags:[["Isometria 2s","p"],["Excêntrica","r"]]},
+  {n:"Levantamento terra romeno",s:"4 × 8",d:"Excêntrica lentíssima — 4s na descida. Foco no alongamento do posterior de coxa. Mantenha as costas neutras e empurre o quadril para trás. Sinta o alongamento antes de subir.",tags:[["Excêntrica 4s","r"],["Posterior","a"]]},
+  {n:"Rosca direta + Tríceps testa (bi-set)",s:"3 × 10+10",d:"Sem pausa entre bíceps e tríceps. Isometria de 90° no bíceps. Tríceps com pegada supinada como Jorlan ensina. Alternância de opostos = pump máximo em pouco tempo.",tags:[["Bi-set","g"],["Isometria 90°","p"]]},
+];
+
+const exB=[
+  {n:"Leg press 45°",s:"5 × 12–15",d:"Pirâmide crescente — sobe o peso a cada série. Pés altos para ativar mais o posterior. Última série: drop-set de 20% e vai até a falha total. Técnica favorita do Jorlan em leg.",tags:[["Pirâmide crescente","a"],["Drop-set final","r"]]},
+  {n:"Puxada frente pegada média",s:"4 × 12",d:"Excêntrica de 3s na fase de subida. Pegada média permite extensão mais ampla atingindo a porção lateral do dorsal. Sentir o dorsal, não os braços — conexão mente-músculo total.",tags:[["Excêntrica 3s","r"],["Mente-músculo","g"]]},
+  {n:"Supino reto c/ barra",s:"3×6–8 + 1×pausa",d:"Pirâmide inversa — começa pesado e vai aliviando. Última série: pausa de 2s no pré-estiramento em cada repetição. Maximiza o pump no peito com volume alto.",tags:[["Pirâmide inversa","a"],["Pausa","p"]]},
+  {n:"Remada hammer bilateral + unilateral",s:"3 × 6+6",d:"6 reps com isometria 3s + 6 reps normais. Faz 6 alternadas + 6 simultâneas para corrigir desequilíbrios. Latíssimo e romboides. Jorlan: 'proporciona grande intensidade atingindo toda a região.'",tags:[["Isometria 3s","p"],["Unilateral","g"]]},
+  {n:"Elevação lateral c/ halteres",s:"4 × 15",d:"Pirâmide crescente. Isometria de 2s no topo de cada repetição. Cotovelo levemente dobrado, nunca trava. Deltóide medial é o responsável pela largura visual do ombro.",tags:[["Pirâmide","a"],["Isometria 2s","p"]]},
+  {n:"Extensão de quadríceps",s:"3 × 12",d:"Isometria de 3s no topo. Amplitude completa. Drop-set opcional na última série. Finalização de quadríceps após composto — satura o músculo completamente.",tags:[["Isometria 3s","p"],["Isolamento","g"]]},
+  {n:"Spider curl 45° + Martelo + Rosca inclinada (tri-set)",s:"4 × 8–10 cada",d:"1° Spider curl — peito no banco 45°, cotovelo à frente, cabeça curta, sem trapaça. 2° Martelo — braquial + braquiorradial, espessura do braço. 3° Banco inclinado pra fora — cotovelo atrás do corpo, cabeça longa, máximo alongamento. Excêntrica 3s em cada. Sem pausa entre os 3. Cobre os 3 ângulos do bíceps num bloco só.",tags:[["Tri-set","g"],["Excêntrica 3s","r"],["3 ângulos","p"]]},
+];
+
+const exC=[
+  {n:"Hack squat ou cadeira flexora",s:"4 × 15",d:"Volume alto com controle total. Não travar o joelho no topo. Variação de máquina para preservar articulações após ciclo de compostos pesados. Fibras lentas respondem ao volume.",tags:[["Alto volume","g"]]},
+  {n:"Puxada articulada triângulo",s:"4 × 12",d:"Isometria de 3s no ponto de contração. Triângulo gera estímulo único nos músculos da região central das costas. Foco em trapézio médio e inferior. Retrair escápulas antes de puxar.",tags:[["Isometria 3s","p"],["Densidade","g"]]},
+  {n:"Crucifixo inclinado c/ halteres",s:"3 × 12",d:"Amplitude máxima — pré-estiramento completo do peitoral. Excêntrica de 3s. Ativa fibras que o supino não alcança por limitar a amplitude. Cria maior dano muscular para crescimento.",tags:[["Excêntrica 3s","r"],["Amplitude máxima","g"]]},
+  {n:"Remada cabo pegada supinada",s:"3 × 6+6",d:"Isometria 3s + 6 reps normais. Pegada supinada ativa mais bíceps e a parte baixa do dorsal. Cria densidade no terço inferior das costas. Corrige desequilíbrios entre os dois lados.",tags:[["Isometria 3s","p"],["Pegada supinada","a"]]},
+  {n:"Elevação frontal + lateral (super-set)",s:"3 × 12+12",d:"Sem pausa entre frontal e lateral. Frontal = deltóide anterior. Lateral = deltóide medial. Jorlan usa super-set de ombro para criar pump extremo em pouco tempo sem desperdiçar energia.",tags:[["Super-set","g"],["Deltóide completo","p"]]},
+  {n:"Bíceps martelo alt. + Tríceps corda",s:"3 × 8–10+6+6",d:"Bíceps martelo alternado 8-10 reps + tríceps corda com isometria 3s em 6 reps + 6 reps normais. Sem pausa entre os dois. Manter contração no final para maximizar o pump nos braços.",tags:[["Isometria 3s","p"],["Bi-set","g"]]},
+  {n:"Panturrilha em pé (máquina)",s:"4 × 20",d:"Isometria de 3s no topo de cada rep. Amplitude completa — desça totalmente e sobe totalmente. Panturrilha tem fibras resistentes: volume alto com controle é mais eficaz que peso alto e solto.",tags:[["Isometria 3s","p"],["Alto volume","g"]]},
+];
+
+const sems=[
+  {num:"1",cor:"var(--accent)",bg:"rgba(124,111,247,0.12)",titulo:"Semana 1 — Calibração (dias 1–7)",txt:"Foco em executar a técnica perfeita antes de subir carga. Aprende as isometrias e a excêntrica. Anota os pesos usados em cada exercício. Volume: 3–4 séries. Objetivo principal: sentir o músculo em cada movimento, não o peso."},
+  {num:"2",cor:"var(--green)",bg:"rgba(61,186,140,0.12)",titulo:"Semana 2 — Aumento de carga (dias 8–14)",txt:"Adiciona 2,5–5 kg nos compostos (agacha, terra, supino, remada) mantendo a técnica. Nos isolados, sobe 1–2 kg. Se a técnica quebrar, mantém o peso. Objetivo: completar todas as séries prescritas."},
+  {num:"3",cor:"var(--red)",bg:"rgba(224,92,92,0.12)",titulo:"Semana 3 — Intensidade máxima (dias 15–21)",txt:"Drop-set em todos os últimos exercícios de cada grupo. Adiciona a 7ª série em 2 compostos por treino. Isometria sobe para 4s em costas e braços. Essa é a semana que vai doer mais — e é onde o corpo cresce de verdade."},
+  {num:"4",cor:"var(--amber)",bg:"rgba(232,168,64,0.12)",titulo:"Semana 4 — Consolidação (dias 22–30)",txt:"Volta ao volume da semana 2 com os pesos da semana 3. Foco em execução perfeita. Adiciona 1 série de falha por músculo principal. Dia 30: teste de carga máxima com boa forma — compare com semana 1 e veja a evolução."},
+];
+
+const tecs=[
+  {icon:"⬇",titulo:"Excêntrica controlada (3–4s)",txt:"A fase de descida lenta aumenta o dano muscular e o tempo sob tensão. Mais ativação de fibras profundas. Jorlan aplica em puxada, remada, agachamento e supino. Benefício: hipertrofia mais intensa por estímulo mecânico."},
+  {icon:"⏸",titulo:"Isometria na contração máxima (3s)",txt:"Segurar 3s no ponto de maior ativação força o músculo a estabilizar sob carga, ativando fibras que o movimento dinâmico não alcança. Usado especialmente na remada hammer, puxada triângulo e tríceps corda."},
+  {icon:"📈",titulo:"Pirâmide crescente e inversa",txt:"Crescente: sobe o peso a cada série para recrutar fibras de alta limiar. Inversa: começa pesado quando fresco para maximizar a força. Aplicado no leg press, ombro e nos exercícios compostos."},
+  {icon:"💥",titulo:"Falha + repetições parciais",txt:"Após atingir a falha concêntrica, executa 6 repetições parciais na amplitude disponível. Continua estimulando as fibras além do ponto normal de falha. Usado no supino, puxada e leg press."},
+  {icon:"🔁",titulo:"Bi-set e super-set de opostos",txt:"Bíceps + tríceps sem descanso. Peito + costas. Jorlan usa esse método para maximizar o pump e economizar tempo. A alternância de músculos opostos permite recuperação ativa sem perder intensidade."},
+  {icon:"💪",titulo:"Tri-série de bíceps por ângulo",txt:"Spider curl banco 45° (cabeça curta, cotovelo à frente) → Martelo (braquial, espessura) → Rosca inclinada banco pra fora (cabeça longa, máximo alongamento). Os 3 ângulos do bíceps num único bloco com excêntrica 3s em cada."},
+  {icon:"🧠",titulo:"Conexão mente-músculo — AllDay",txt:"\"O treino começa na mente.\" Visualizar o músculo se contraindo antes de mover o peso. Não é só levantar — é sentir cada repetição. Essa filosofia é o que diferencia o físico do Jorlan: denso, old school, construído com intenção."},
+];
+
+const tagClass={p:"etag-p",g:"etag-g",a:"etag-a",r:"etag-r"};
+
+function buildEx(exs,key){
+  const nc=key==='A'?'num-a':key==='B'?'num-b':'num-c';
+  return exs.map((e,i)=>{
+    const tags=e.tags.map(t=>`<span class="etag ${tagClass[t[1]]}">${t[0]}</span>`).join('');
+    return `<div class="ex-item">
+      <div class="ex-row" onclick="toggleEx(this)" tabindex="0" role="button" aria-expanded="false">
+        <div class="ex-num ${nc}">${i+1}</div>
+        <div class="ex-name">${e.n}</div>
+        <div class="ex-series">${e.s}</div>
+        <span class="ex-chev">⌄</span>
+      </div>
+      <div class="ex-expand">
+        <div class="ex-dica">${e.d}</div>
+        <div class="ex-tags">${tags}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildSem(){
+  return sems.map(s=>`<div class="sem-item">
+    <div class="sem-head" onclick="toggleSem(this)" tabindex="0" role="button" aria-expanded="false">
+      <div class="sem-num" style="background:${s.bg};color:${s.cor}">${s.num}</div>
+      <div class="sem-title">${s.titulo}</div>
+      <span style="font-size:14px;color:var(--text3);transition:transform .2s;flex-shrink:0">⌄</span>
+    </div>
+    <div class="sem-body"><p>${s.txt}</p></div>
+  </div>`).join('');
+}
+
+function buildTec(){
+  return tecs.map(t=>`<div class="tec-item">
+    <div class="tec-head" onclick="toggleTec(this)" tabindex="0" role="button" aria-expanded="false">
+      <div class="tec-icon">${t.icon}</div>
+      <div class="tec-name">${t.titulo}</div>
+      <span style="font-size:14px;color:var(--text3);transition:transform .2s;flex-shrink:0">⌄</span>
+    </div>
+    <div class="tec-body"><p>${t.txt}</p></div>
+  </div>`).join('');
+}
+
+document.getElementById('exlist-A').innerHTML=buildEx(exA,'A');
+document.getElementById('exlist-B').innerHTML=buildEx(exB,'B');
+document.getElementById('exlist-C').innerHTML=buildEx(exC,'C');
+document.getElementById('sem-list').innerHTML=buildSem();
+document.getElementById('tec-list').innerHTML=buildTec();
+
+function toggleTreino(id,btn){
+  const classes=['active-a','active-b','active-c'];
+  const cls='active-'+id.toLowerCase();
+  const det=document.getElementById('detail-'+id);
+  const isOpen=det.classList.contains('open');
+  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('open'));
+  document.querySelectorAll('.treino-btn').forEach(b=>{ classes.forEach(c=>b.classList.remove(c)); b.setAttribute('aria-expanded','false'); });
+  if(!isOpen){ det.classList.add('open'); btn.classList.add(cls); btn.setAttribute('aria-expanded','true'); }
+}
+
+function toggleEx(row){
+  const exp=row.nextElementSibling;
+  const chev=row.querySelector('.ex-chev');
+  const isOpen=exp.classList.contains('open');
+  row.closest('[id^="exlist"]').querySelectorAll('.ex-expand').forEach(e=>e.classList.remove('open'));
+  row.closest('[id^="exlist"]').querySelectorAll('.ex-row').forEach(r=>{ r.classList.remove('open'); const c=r.querySelector('.ex-chev'); if(c)c.style.transform=''; });
+  if(!isOpen){ exp.classList.add('open'); row.classList.add('open'); chev.style.transform='rotate(180deg)'; }
+}
+
+function toggleSem(head){
+  const body=head.nextElementSibling;
+  const chev=head.querySelector('span:last-child');
+  const isOpen=body.classList.contains('open');
+  document.querySelectorAll('.sem-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.sem-head span:last-child').forEach(c=>c.style.transform='');
+  if(!isOpen){ body.classList.add('open'); chev.style.transform='rotate(180deg)'; }
+}
+
+function toggleTec(head){
+  const body=head.nextElementSibling;
+  const chev=head.querySelector('span:last-child');
+  const isOpen=body.classList.contains('open');
+  document.querySelectorAll('.tec-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.tec-head span:last-child').forEach(c=>c.style.transform='');
+  if(!isOpen){ body.classList.add('open'); chev.style.transform='rotate(180deg)'; }
+}
+</script>
+</body>
+</html>
